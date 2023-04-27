@@ -35,8 +35,8 @@ app.get('/restaurants/:restaurant_id', (req, res) => {
 //建立搜尋功能路由
 app.get('/search', (req, res) => {
   const restaurants = restaurantList.results.filter( restaurant => {
-    const keyword = req.query.keyword
-    return restaurant.name.toLowerCase().includes(keyword.toLowerCase()) 
+    const keyword = req.query.keyword.split(' ').join('')
+    return restaurant.name.toLowerCase().split(' ').join('').includes(keyword.toLowerCase()) 
   })
   res.render('index', { restaurants: restaurants, keyword: req.query.keyword })
 })
